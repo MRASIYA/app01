@@ -41,56 +41,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function openApp() {
-        const appFrame = document.getElementById('appFrame');
+        // Google Apps Script doesn't allow iframe embedding due to X-Frame-Options
+        // Open directly in new tab for best user experience
+        window.open(APP_URL, '_blank');
+        showNotification('Opening Material Management Application in new tab...', 'success');
+        
+        // Update the UI to show that the app opened in a new tab
         const previewPlaceholder = document.getElementById('previewPlaceholder');
-        const launchBtn = document.querySelector('.launch-btn');
-
-        if (!appFrame || !previewPlaceholder) {
-            // Fallback: open in new tab if iframe elements not found
-            window.open(APP_URL, '_blank');
-            return;
-        }
-
-        try {
-            // Show loading state
-            showLoadingState(launchBtn);
-            
-            // Hide placeholder and show iframe
-            previewPlaceholder.style.display = 'none';
-            appFrame.style.display = 'block';
-            
-            // Set iframe source
-            appFrame.src = APP_URL;
-            
-            // Handle iframe load events
-            appFrame.onload = function() {
-                hideLoadingState(launchBtn);
-                showNotification('Application loaded successfully!', 'success');
-                
-                // Scroll to the app section smoothly
-                document.querySelector('.app-section').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-            };
-
-            appFrame.onerror = function() {
-                hideLoadingState(launchBtn);
-                showAppError();
-            };
-
-            // Timeout fallback
-            setTimeout(() => {
-                if (appFrame.style.display === 'block' && !appFrame.contentDocument) {
-                    hideLoadingState(launchBtn);
-                    showAppError();
-                }
-            }, 10000);
-
-        } catch (error) {
-            console.error('Error loading app:', error);
-            hideLoadingState(launchBtn);
-            showAppError();
+        if (previewPlaceholder) {
+            previewPlaceholder.innerHTML = `
+                <div class="placeholder-content">
+                    <div class="placeholder-icon">🚀</div>
+                    <h3>Application Opened in New Tab</h3>
+                    <p>The Material Management System has been opened in a new browser tab for the best experience.</p>
+                    <div class="action-buttons" style="margin-top: 1.5rem;">
+                        <button onclick="openApp()" class="launch-btn" style="margin: 0.5rem;">
+                            <span class="btn-icon">🔗</span>
+                            Open Again
+                        </button>
+                        <button onclick="openSheet()" class="launch-btn" style="margin: 0.5rem; background: #28a745;">
+                            <span class="btn-icon">📊</span>
+                            View Google Sheet
+                        </button>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                        <p><strong>Features available in the application:</strong></p>
+                        <ul class="feature-list" style="margin-top: 0.5rem;">
+                            <li>✅ Select materials from dropdown</li>
+                            <li>✅ View current stock levels</li>
+                            <li>✅ Enter transactions (Received/Issued/Return)</li>
+                            <li>✅ Automatic stock calculations</li>
+                            <li>✅ Real-time Google Sheets updates</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
         }
     }
 
