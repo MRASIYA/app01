@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const APP_URL = 'https://script.google.com/macros/s/AKfycbyqiuKArcANAmOeYkHmdzd8iNLKGCXaH22nryH-lws8HxVB8l4URC5N8MYVoEA6ilCv/exec';
+    const APP_URL = 'https://script.google.com/macros/s/AKfycbxMYiiDaHgCfIBkTkyshI5G8qxlDOgGFnRFA1gvlM9qV2Rk8KQAhcC9NKPqtrza27sA/exec';
     const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1uVKj3fmeIu0ExCLEeEQ6_7X3Hqi9DEA65ophongr56Y/edit';
 
     // Initialize the website
