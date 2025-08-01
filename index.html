@@ -3,156 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Material Data Entry System</title>
-    <meta name="description" content="Professional material inventory management system with real-time Google Sheets integration">
-    <meta name="keywords" content="material management, inventory, stock control, warehouse management">
+    <title>Professional Web Application</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <h1>🏭 Material Management System</h1>
-                <p class="subtitle">Professional Inventory Control with Real-time Updates</p>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-rocket"></i>
+                <span>WebApp Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <main class="main-content">
-        <div class="container">
-            <section class="hero-section">
-                <div class="hero-content">
-                    <h2>Streamline Your Material Operations</h2>
-                    <p>Manage material receipts, issues, and returns with automatic stock calculations and real-time Google Sheets synchronization.</p>
-                    
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">📦</div>
-                            <h3>Material Selection</h3>
-                            <p>Easy dropdown selection of all materials from your inventory database</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <div class="feature-icon">📊</div>
-                            <h3>Real-time Updates</h3>
-                            <p>Instant stock level updates with automatic closing stock calculations</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <div class="feature-icon">🔄</div>
-                            <h3>Transaction Processing</h3>
-                            <p>Handle Received, Issued, and Return operations seamlessly</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <div class="feature-icon">📱</div>
-                            <h3>Mobile Ready</h3>
-                            <p>Responsive design works perfectly on desktop, tablet, and mobile devices</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="app-section">
-                <div class="app-container">
-                    <div class="app-header">
-                        <h2>Access Material Entry System</h2>
-                        <p>Click the button below to open the material data entry application in a new tab</p>
-                        <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #2196f3;">
-                            <p style="margin: 0; font-size: 0.9rem; color: #1565c0;">
-                                <strong>📌 Note:</strong> The application opens in a new tab for the best user experience and full functionality.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="app-launch">
-                        <button onclick="openApp()" class="launch-btn">
-                            <span class="btn-icon">🚀</span>
-                            Launch Application
-                        </button>
-                        
-                        <div class="app-preview">
-                            <div class="preview-frame">
-                                <iframe 
-                                    id="appFrame" 
-                                    src="" 
-                                    title="Material Data Entry Application"
-                                    style="display: none;">
-                                </iframe>
-                                
-                                <div class="preview-placeholder" id="previewPlaceholder">
-                                    <div class="placeholder-content">
-                                        <div class="placeholder-icon">📋</div>
-                                        <h3>Material Entry Interface</h3>
-                                        <p>Click "Launch Application" to start managing your materials</p>
-                                        <ul class="feature-list">
-                                            <li>✅ Select materials from dropdown</li>
-                                            <li>✅ View current stock levels</li>
-                                            <li>✅ Enter transactions (Received/Issued/Return)</li>
-                                            <li>✅ Automatic stock calculations</li>
-                                            <li>✅ Real-time Google Sheets updates</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="info-section">
-                <div class="info-grid">
-                    <div class="info-card">
-                        <h3>🔧 How It Works</h3>
-                        <ol>
-                            <li>Select a material from the dropdown list</li>
-                            <li>Review current stock levels and material details</li>
-                            <li>Choose operation type (Received, Issued, or Return)</li>
-                            <li>Enter the quantity for the transaction</li>
-                            <li>Submit to update the Google Sheet automatically</li>
-                        </ol>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>📈 Key Benefits</h3>
-                        <ul>
-                            <li>Real-time inventory tracking</li>
-                            <li>Automatic stock calculations</li>
-                            <li>Error prevention and validation</li>
-                            <li>Mobile-friendly interface</li>
-                            <li>Direct Google Sheets integration</li>
-                            <li>No software installation required</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🛡️ Data Security</h3>
-                        <ul>
-                            <li>Secure Google Apps Script platform</li>
-                            <li>Direct connection to your Google Sheet</li>
-                            <li>No third-party data storage</li>
-                            <li>Access controlled by Google permissions</li>
-                            <li>Automatic backup through Google Drive</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-particles"></div>
         </div>
-    </main>
+        <div class="hero-content">
+            <h1 class="hero-title">Professional Web Solutions</h1>
+            <p class="hero-subtitle">Experience cutting-edge technology with our advanced web application platform</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="connectToService()">
+                    <i class="fas fa-play"></i>
+                    Get Started
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
 
-    <footer class="main-footer">
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Amazing Features</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimized performance with cutting-edge technology for instant results</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Enterprise-grade security with 99.9% uptime guarantee</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Responsive</h3>
+                    <p>Perfect experience across all devices and screen sizes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title light">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-item" onclick="connectToService()">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Integration</h3>
+                    <p>Seamless integration with Google Apps Script and cloud services</p>
+                    <div class="service-status" id="serviceStatus">
+                        <span class="status-indicator"></span>
+                        <span>Ready to Connect</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Management</h3>
+                    <p>Powerful data processing and management capabilities</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics</h3>
+                    <p>Real-time analytics and reporting dashboard</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Response Section -->
+    <section class="api-section">
+        <div class="container">
+            <h2 class="section-title">Live Data</h2>
+            <div class="api-container">
+                <div class="api-controls">
+                    <button class="btn btn-primary" onclick="fetchData()" id="fetchBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        Fetch Data
+                    </button>
+                    <div class="connection-status" id="connectionStatus">
+                        <span class="status-dot"></span>
+                        <span>Disconnected</span>
+                    </div>
+                </div>
+                <div class="api-response" id="apiResponse">
+                    <div class="response-placeholder">
+                        <i class="fas fa-server"></i>
+                        <p>Click "Fetch Data" to connect to the service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@webapp.pro</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Tech Street, Digital City</span>
+                    </div>
+                </div>
+                <form class="contact-form" onsubmit="submitForm(event)">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2024 Material Management System. Powered by Google Apps Script.</p>
-                <div class="footer-links">
-                    <a href="#" onclick="openApp()">Launch App</a>
-                    <a href="https://docs.google.com/spreadsheets/d/1uVKj3fmeIu0ExCLEeEQ6_7X3Hqi9DEA65ophongr56Y/edit" target="_blank">View Sheet</a>
+                <div class="footer-logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>WebApp Pro</span>
                 </div>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#support">Support</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WebApp Pro. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="app.js"></script>
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
