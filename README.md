@@ -1,124 +1,137 @@
-# Professional Web Application
+# Material Data Entry Web Application
 
-A modern, responsive web application with Google Apps Script integration, featuring beautiful animations and professional design.
+## Overview
+This Google Apps Script web application provides an interface for entering material transaction data (Received, Issued, Return) into your Google Sheet. The application automatically calculates and updates the closing stock based on the transactions.
 
-## 🚀 Features
+## Features
+- **Material Selection**: Dropdown list of all materials from your sheet
+- **Real-time Stock Display**: Shows current stock levels for selected material
+- **Transaction Entry**: Support for Received, Issued, and Return operations
+- **Automatic Calculations**: Updates closing stock automatically
+- **Responsive Design**: Works on desktop and mobile devices
+- **Error Handling**: Comprehensive error messages and validation
 
-- **Modern Design**: Gradient backgrounds, glass morphism effects, and smooth animations
-- **Google Apps Script Integration**: Direct connection to cloud services
-- **Responsive Design**: Works perfectly on all devices
-- **Interactive Elements**: Real-time status indicators and toast notifications
-- **Professional UI/UX**: Clean, modern interface with hover effects
+## Sheet Structure
+Your Google Sheet should have the following columns in Sheet1:
+- **Column A**: Type
+- **Column B**: Material Code
+- **Column C**: Material Name
+- **Column D**: UOM (Unit of Measure)
+- **Column E**: Op.Stock-Warehouse (Opening Stock)
+- **Column F**: Received
+- **Column G**: Issued
+- **Column H**: Return
+- **Column I**: Useable Material Total Closing Stock
 
-## 📁 Project Structure
+## Setup Instructions
 
-```
-app01/
-├── index.html          # Main HTML structure
-├── styles.css          # Professional CSS styling with animations
-├── script.js           # JavaScript functionality and API integration
-└── README.md           # Project documentation
-```
+### Step 1: Create Google Apps Script Project
+1. Go to [Google Apps Script](https://script.google.com)
+2. Click "New Project"
+3. Rename the project to "Material Data Entry System"
 
-## 🛠️ Technologies Used
+### Step 2: Add the Code Files
+1. Replace the default `Code.gs` content with the code from `Code.gs` file
+2. Create new HTML files by clicking the + button:
+   - Create `Index.html` and paste the content from `Index.html`
+   - Create `Stylesheet.html` and paste the content from `Stylesheet.html`
+   - Create `JavaScript.html` and paste the content from `JavaScript.html`
 
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with animations and effects
-- **JavaScript (ES6+)**: Interactive functionality
-- **Google Apps Script**: Cloud integration
-- **Font Awesome**: Icons
-- **Google Fonts**: Inter typography
-
-## 🎨 Design Features
-
-- **Loading Screen**: Professional loading animation
-- **Hero Section**: Eye-catching landing with animated particles
-- **Feature Cards**: Interactive cards with hover effects
-- **Services Section**: Glass morphism design
-- **Contact Form**: Functional form with validation
-- **Toast Notifications**: User feedback system
-- **Mobile Menu**: Responsive hamburger navigation
-
-## 🔧 Setup & Installation
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd app01
+### Step 3: Configure Sheet ID
+1. In `Code.gs`, update the `SHEET_ID` constant with your Google Sheet ID:
+   ```javascript
+   const SHEET_ID = '1uVKj3fmeIu0ExCLEeEQ6_7X3Hqi9DEA65ophongr56Y';
    ```
+   (The ID is already set to your sheet)
 
-2. Open `index.html` in your web browser
+### Step 4: Deploy the Web App
+1. Click "Deploy" > "New deployment"
+2. Choose type: "Web app"
+3. Set execute as: "Me"
+4. Set access to: "Anyone with the link" or "Anyone" (depending on your needs)
+5. Click "Deploy"
+6. Copy the web app URL provided
 
-3. The application will automatically load with all features ready to use
+### Step 5: Set Permissions
+1. The first time you run the deployment, you'll need to authorize the script
+2. Grant the necessary permissions to access your Google Sheet
 
-## 🌐 Google Apps Script Integration
+## How to Use
 
-The application connects to a Google Apps Script service at:
+### Adding Transactions
+1. **Select Material**: Choose a material from the dropdown list
+2. **Review Details**: Check the current stock levels displayed
+3. **Choose Operation**: Select Received, Issued, or Return
+4. **Enter Quantity**: Input the transaction quantity
+5. **Submit**: Click "Submit Transaction"
+
+### Stock Calculation
+The closing stock is automatically calculated using:
 ```
-https://script.google.com/macros/s/AKfycbyZwQrxxXeDnT1llTZb3h7Mj059z4y_3JuKnmQ2p5yIdQXbxttoDblg4coapbSy-gkq/exec
+Closing Stock = Opening Stock + Received - Issued + Return
 ```
 
-### Available Functions:
-- **Connect to Service**: Establishes connection to Google Apps Script
-- **Fetch Data**: Retrieves data from the cloud service
-- **Submit Form**: Sends contact form data to the script
+### Features
+- **Auto-refresh**: Material info updates in real-time
+- **Validation**: Prevents invalid entries
+- **Loading indicators**: Shows progress during operations
+- **Success/Error messages**: Clear feedback on all actions
+- **Keyboard shortcuts**: 
+  - Ctrl+Enter: Submit transaction
+  - Escape: Reset form
 
-## 📱 Responsive Design
+## Troubleshooting
 
-The application is fully responsive and works on:
-- Desktop computers
-- Tablets
-- Mobile phones
-- All screen sizes and orientations
+### Common Issues
+1. **"Failed to load materials"**: Check that the Sheet ID is correct and the sheet exists
+2. **"Permission denied"**: Ensure the script has access to your Google Sheet
+3. **"Invalid operation type"**: Make sure you selected Received, Issued, or Return
+4. **"Quantity must be greater than 0"**: Enter a positive number for quantity
 
-## 🎯 Usage
+### Sheet Requirements
+- Column headers must be in row 1
+- Material data should start from row 2
+- Material Code and Material Name are required fields
+- Numeric columns should contain valid numbers
 
-1. **Navigation**: Use the top menu to navigate between sections
-2. **Get Started**: Click the "Get Started" button to connect to the service
-3. **Fetch Data**: Use the "Fetch Data" button to retrieve information
-4. **Contact Form**: Fill out and submit the contact form
-5. **Mobile**: Use the hamburger menu on mobile devices
+## Advanced Features
 
-## 🚀 Deployment
+### Extending the Application
+You can enhance the application by:
+1. Adding transaction history tracking
+2. Implementing user authentication
+3. Adding export functionality
+4. Creating dashboard views
+5. Adding material search functionality
 
-The application is ready for deployment to:
-- GitHub Pages
-- Netlify
-- Vercel
-- Any static hosting service
+### Transaction History (Optional)
+To add transaction history, create a second sheet called "Transactions" with columns:
+- Date/Time
+- Material Code
+- Material Name
+- Operation Type
+- Quantity
+- User (if authentication is added)
 
-## 🤝 Contributing
+## Security Notes
+- The web application requires access to your Google Sheet
+- Consider setting access permissions appropriately
+- For production use, implement proper authentication
+- Regular backups of your sheet data are recommended
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## Support
+For issues or questions about this application:
+1. Check the browser console for detailed error messages
+2. Verify your sheet structure matches the requirements
+3. Ensure all required permissions are granted
+4. Test with a simple transaction first
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 👨‍💻 Author
-
-**MRASIYA**
-- Email: shanandsonali143@gmail.com
-
-## 🙏 Acknowledgments
-
-- Font Awesome for icons
-- Google Fonts for typography
-- Modern CSS techniques and best practices
-- Professional web design patterns
+## Version Information
+- **Version**: 1.0
+- **Created**: 2024
+- **Compatibility**: Google Apps Script, Google Sheets
+- **Browser Support**: Modern browsers (Chrome, Firefox, Safari, Edge)
 
 ---
 
-### 🔄 Latest Updates
-
-- ✅ Professional redesign with modern UI/UX
-- ✅ Google Apps Script integration
-- ✅ Responsive mobile design
-- ✅ Interactive animations and effects
-- ✅ Toast notification system
-- ✅ Real-time connection status
-- ✅ Form validation and submission
+**Note**: This application directly modifies your Google Sheet data. Always maintain backups of important data before using any automated systems.
